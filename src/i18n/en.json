@@ -1,0 +1,20 @@
+{
+  "header": {
+    "title": "Centime Financial Overview"
+  },
+  "welcome_message": "Welcome to the Sankey Diagram",
+  "Flow": "Flow",
+  "Value": "Value",
+  "Salary": "Salary",
+  "Bills": "Bills",
+  "Electric Bill": "Electric Bill",
+  "Mobile Bill": "Mobile Bill",
+  "Add Node": "Add Node",
+  "Delete Node": "Delete Node",
+  "Add Link": "Add Link",
+  "Loading": "Loading...",
+  "Unknown": "Unknown",
+  "Salary - Bills": "Salary - Bills",
+  "Bills - Mobile Bill": "Bills - Mobile Bill",
+  "Bills - Electric Bill": "Bills - Electric Bill"
+}

@@ -1,0 +1,20 @@
+{
+  "header": {
+    "title": "सेंटाइम वित्तीय अवलोकन"
+  },
+  "welcome_message": "सांकी आरेख में आपका स्वागत है",
+  "Flow": "प्रवाह",
+  "Value": "मूल्य",
+  "Salary": "वेतन",
+  "Bills": "बिल",
+  "Electric Bill": "इलेक्ट्रिक बिल",
+  "Mobile Bill": "मोबाइल बिल",
+  "Add Node": "नोड जोड़ें",
+  "Delete Node": "नोड हटाएं",
+  "Add Link": "लिंक जोड़ें",
+  "Loading": "लोड हो रहा है...",
+  "Unknown": "अज्ञात",
+  "Salary - Bills": "वेतन - बिल्स",
+  "Bills - Mobile Bill": "बिल्स - मोबाइल बिल",
+  "Bills - Electric Bill": "बिल्स - बिजली का बिल"
+}
