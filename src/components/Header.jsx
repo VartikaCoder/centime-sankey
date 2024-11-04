@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 20px' }}>
       <img src={logo} alt="Logo" style={{ height: '40px' }} />
-      <h1>{t('Centime Financial Overview')}</h1>
+      <h1>{t('header.title')}</h1>
       <div>
         <button onClick={() => changeLanguage('en')}>English</button>
         <button onClick={() => changeLanguage('hi')}>Hindi</button>

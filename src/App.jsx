@@ -1,15 +1,21 @@
 // src/App.jsx
 import React from 'react';
 import Header from './components/Header';
-import Chart from './components/Chart';
 import NodeManager from './components/NodeManager';
-import './i18n/i18n';
+import Chart from './components/Chart';
+import './styles/index.css';
 
 const App = () => (
   <div>
     <Header />
-    <NodeManager />
-    <Chart />
+    <div className="container">
+      <div className="node-manager">
+        <NodeManager />
+      </div>
+      <div className="sankey-diagram">
+        <Chart />
+      </div>
+    </div>
   </div>
 );
 

@@ -1,3 +1,5 @@
+// src/redux/dataActions.js
+
 export const ADD_NODE = 'ADD_NODE';
 export const ADD_LINK = 'ADD_LINK';
 export const EDIT_NODE = 'EDIT_NODE';
@@ -23,6 +25,7 @@ export const deleteNode = (index) => ({
     type: DELETE_NODE,
     payload: index,
 });
+
 
 export const setData = (data) => ({
     type: SET_DATA,

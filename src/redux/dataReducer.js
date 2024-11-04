@@ -1,3 +1,5 @@
+// src/redux/dataReducer.js
+
 import {
     ADD_NODE,
     ADD_LINK,
@@ -29,11 +31,10 @@ const dataReducer = (state = initialState, action) => {
             case EDIT_NODE: {
                 const { id, name, value } = action.payload;
                 const updatedNodes = state.nodes.map((node) =>
-                    node.id === id ? { ...node, name, value } : node
+                    node.id === id ? { ...node, name: name || node.name, value } : node
                 );
                 return { ...state, nodes: updatedNodes };
             }
-            
 
         case DELETE_NODE: {
             const nodeId = action.payload;
@@ -45,7 +46,7 @@ const dataReducer = (state = initialState, action) => {
                 ),
             };
         }
-
+        
         case ADD_LINK:
             return {
                 ...state,

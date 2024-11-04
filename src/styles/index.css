@@ -6,9 +6,32 @@ body {
 }
 
 .container {
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 80px);
   padding: 20px;
-  margin: auto;
-  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+/* Node Manager (left side - 25%) */
+.node-manager {
+  width: 25%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Sankey Diagram (right side - 75%) */
+.sankey-diagram {
+  width: 75%;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 input, button {

@@ -3,13 +3,15 @@ const mockData = {
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
         await delay(1000);
 
+        // Define nodes with display values only
         const nodes = [
-            { id: 1, name: 'Salary', value: 5000 },
+            { id: 1, name: 'Salary', value: 3500 },
             { id: 2, name: 'Bills', value: 3000 },
             { id: 3, name: 'Electric Bill', value: 1000 },
             { id: 4, name: 'Mobile Bill', value: 2000 }
         ];
 
+        // Define links with specific flow values
         const links = [
             { source: nodes.findIndex(node => node.id === 1), target: nodes.findIndex(node => node.id === 2), value: 3000 },
             { source: nodes.findIndex(node => node.id === 2), target: nodes.findIndex(node => node.id === 3), value: 1000 },

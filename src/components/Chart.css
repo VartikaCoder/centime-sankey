@@ -1,0 +1,31 @@
+/* src/styles/Chart.css */
+
+/* Container for the entire Sankey chart */
+.chart-container {
+    position: relative;
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+/* Title Styling */
+.chart-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Node Labels - positioned above each node */
+.node-label {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    white-space: nowrap;
+    transform: translateY(-40%); /* Adjusted to slightly lift above the node */
+    width: 100px; /* Adjust for readability */
+    pointer-events: none; /* To prevent blocking any clicks */
+}

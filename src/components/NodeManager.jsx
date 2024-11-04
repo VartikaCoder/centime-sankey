@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNode, editNode, deleteNode, addLink } from '../redux/dataActions';
+import { FaTrashAlt } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const NodeManager = () => {
+    const { t } = useTranslation();
     const [nodeName, setNodeName] = useState('');
     const [nodeValue, setNodeValue] = useState('');
-    const [editIndex, setEditIndex] = useState('');
-    const [newName, setNewName] = useState('');
+    const [selectedNodeId, setSelectedNodeId] = useState('');
     const [newValue, setNewValue] = useState('');
-    const [deleteIndex, setDeleteIndex] = useState('');
     const [sourceId, setSourceId] = useState('');
     const [targetId, setTargetId] = useState('');
     const [linkValue, setLinkValue] = useState('');
 
     const nodes = useSelector((state) => state.data.nodes);
+    const links = useSelector((state) => state.data.links);
     const dispatch = useDispatch();
 
     const handleAddNode = () => {
@@ -26,18 +28,13 @@ const NodeManager = () => {
     };
 
     const handleEditNode = () => {
-        if (editIndex && newName && newValue) {
-            dispatch(editNode(Number(editIndex), newName, Number(newValue)));
-            setEditIndex('');
-            setNewName('');
-            setNewValue('');
-        }
-    };
-
-    const handleDeleteNode = () => {
-        if (deleteIndex) {
-            dispatch(deleteNode(Number(deleteIndex)));
-            setDeleteIndex('');
+        if (selectedNodeId && newValue) {
+            const node = nodes.find((node) => node.id === Number(selectedNodeId));
+            if (node) {
+                dispatch(editNode(Number(selectedNodeId), node.name, Number(newValue)));
+                setSelectedNodeId('');
+                setNewValue('');
+            }
         }
     };
 
@@ -54,87 +51,107 @@ const NodeManager = () => {
         }
     };
 
+    const hasDependencies = (nodeId) => {
+        return links.some(link => link.source === nodeId);
+    };
+
     return (
-        <div style={{ marginBottom: '20px' }}>
-            <h3>Manage Nodes</h3>
-            <div>
-                <h4>Existing Nodes</h4>
+        <div className="node-manager-container">
+            <h3>{t('manage_nodes')}</h3>
+
+            <div className="node-list">
+                <h4>{t('existing_nodes')}</h4>
                 {nodes.length > 0 ? (
                     <ul>
                         {nodes.map((node) => (
-                            <li key={node.id}>
-                                ID: {node.id}, Name: {node.name}, Value: {node.value}
+                            <li key={node.id} className="node-item">
+                                <span>{t(node.name, { defaultValue: node.name })} - {node.value}</span>
+                                {!hasDependencies(node.id) && (
+                                    <FaTrashAlt
+                                        onClick={() => dispatch(deleteNode(node.id))}
+                                        title={t('delete_node')}
+                                        style={{ cursor: 'pointer', marginLeft: '10px' }}
+                                    />
+                                )}
                             </li>
                         ))}
                     </ul>
                 ) : (
-                    <p>No nodes available. Add a new node!</p>
+                    <p>{t('no_nodes_available')}</p>
                 )}
             </div>
 
-            <input
-                type="text"
-                value={nodeName}
-                onChange={(e) => setNodeName(e.target.value)}
-                placeholder="Enter node name"
-            />
-            <input
-                type="number"
-                value={nodeValue}
-                onChange={(e) => setNodeValue(e.target.value)}
-                placeholder="Enter node value"
-            />
-            <button onClick={handleAddNode}>Add Node</button>
+            <div className="input-section">
+                <input
+                    type="text"
+                    value={nodeName}
+                    onChange={(e) => setNodeName(e.target.value)}
+                    placeholder={t('enter_node_name')}
+                />
+                <input
+                    type="number"
+                    value={nodeValue}
+                    onChange={(e) => setNodeValue(e.target.value)}
+                    placeholder={t('enter_node_value')}
+                />
+                <button onClick={handleAddNode}>{t('add_node')}</button>
+            </div>
 
-            <input
-                type="number"
-                value={editIndex}
-                onChange={(e) => setEditIndex(e.target.value)}
-                placeholder="Enter node ID to edit"
-            />
-            <input
-                type="text"
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-                placeholder="Enter new name"
-            />
-            <input
-                type="number"
-                value={newValue}
-                onChange={(e) => setNewValue(e.target.value)}
-                placeholder="Enter new value"
-            />
-            <button onClick={handleEditNode}>Edit Node</button>
+            <div className="dropdown-section">
+                <select
+                    value={selectedNodeId}
+                    onChange={(e) => {
+                        setSelectedNodeId(e.target.value);
+                        const node = nodes.find((n) => n.id === Number(e.target.value));
+                        if (node) setNewValue(node.value);
+                    }}
+                >
+                    <option value="">{t('select_node_to_edit')}</option>
+                    {nodes.map((node) => (
+                        <option key={node.id} value={node.id}>
+                            {node.name} - {node.value}
+                        </option>
+                    ))}
+                </select>
 
-            <input
-                type="number"
-                value={deleteIndex}
-                onChange={(e) => setDeleteIndex(e.target.value)}
-                placeholder="Enter node ID to delete"
-            />
-            <button onClick={handleDeleteNode}>Delete Node</button>
+                <input
+                    type="number"
+                    value={newValue}
+                    onChange={(e) => setNewValue(e.target.value)}
+                    placeholder={t('enter_new_value')}
+                />
+                <button onClick={handleEditNode} disabled={!selectedNodeId}>{t('edit_node')}</button>
+            </div>
 
-            <h3>Manage Links</h3>
+            <h3>{t('manage_links')}</h3>
 
-            <input
-                type="number"
-                value={sourceId}
-                onChange={(e) => setSourceId(e.target.value)}
-                placeholder="Enter source node ID"
-            />
-            <input
-                type="number"
-                value={targetId}
-                onChange={(e) => setTargetId(e.target.value)}
-                placeholder="Enter target node ID"
-            />
-            <input
-                type="number"
-                value={linkValue}
-                onChange={(e) => setLinkValue(e.target.value)}
-                placeholder="Enter link value"
-            />
-            <button onClick={handleAddLink}>Add Link</button>
+            <div className="link-section">
+                <select value={sourceId} onChange={(e) => setSourceId(e.target.value)}>
+                    <option value="">{t('select_source_node')}</option>
+                    {nodes.map((node) => (
+                        <option key={node.id} value={node.id}>
+                            {node.name}
+                        </option>
+                    ))}
+                </select>
+
+                <select value={targetId} onChange={(e) => setTargetId(e.target.value)}>
+                    <option value="">{t('select_target_node')}</option>
+                    {nodes.map((node) => (
+                        <option key={node.id} value={node.id}>
+                            {node.name}
+                        </option>
+                    ))}
+                </select>
+
+                <input
+                    type="number"
+                    value={linkValue}
+                    onChange={(e) => setLinkValue(e.target.value)}
+                    placeholder={t('enter_link_value')}
+                />
+                <button onClick={handleAddLink}>{t('add_link')}</button>
+            </div>
         </div>
     );
 };

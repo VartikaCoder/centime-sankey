@@ -2,7 +2,6 @@
   "header": {
     "title": "सेंटाइम वित्तीय अवलोकन"
   },
-  "welcome_message": "सांकी आरेख में आपका स्वागत है",
   "Flow": "प्रवाह",
   "Value": "मूल्य",
   "Salary": "वेतन",
@@ -16,5 +15,21 @@
   "Unknown": "अज्ञात",
   "Salary - Bills": "वेतन - बिल्स",
   "Bills - Mobile Bill": "बिल्स - मोबाइल बिल",
-  "Bills - Electric Bill": "बिल्स - बिजली का बिल"
+  "Bills - Electric Bill": "बिल्स - बिजली का बिल",
+
+  
+  "manage_nodes": "नोड प्रबंधित करें",
+  "existing_nodes": "मौजूदा नोड्स",
+  "enter_node_name": "नोड का नाम दर्ज करें",
+  "enter_node_value": "नोड का मान दर्ज करें",
+  "select_node_to_edit": "संपादित करने के लिए नोड चुनें",
+  "enter_new_value": "नया मान दर्ज करें",
+  "edit_node": "नोड संपादित करें",
+  "add_node": "नोड जोड़ें",
+  "add_link": "लिंक जोड़ें",
+  "manage_links": "लिंक प्रबंधित करें",
+  "select_source_node": "स्रोत नोड चुनें",
+  "select_target_node": "लक्ष्य नोड चुनें",
+  "enter_link_value": "लिंक मान दर्ज करें",
+  "no_nodes_available": "कोई नोड्स उपलब्ध नहीं हैं। नया नोड जोड़ें!"
 }

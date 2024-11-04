@@ -2,7 +2,6 @@
   "header": {
     "title": "Centime Financial Overview"
   },
-  "welcome_message": "Welcome to the Sankey Diagram",
   "Flow": "Flow",
   "Value": "Value",
   "Salary": "Salary",
@@ -16,5 +15,21 @@
   "Unknown": "Unknown",
   "Salary - Bills": "Salary - Bills",
   "Bills - Mobile Bill": "Bills - Mobile Bill",
-  "Bills - Electric Bill": "Bills - Electric Bill"
+  "Bills - Electric Bill": "Bills - Electric Bill",
+  
+  
+  "manage_nodes": "Manage Nodes",
+  "existing_nodes": "Existing Nodes",
+  "enter_node_name": "Enter node name",
+  "enter_node_value": "Enter node value",
+  "select_node_to_edit": "Select Node to Edit",
+  "enter_new_value": "Enter new value",
+  "edit_node": "Edit Node",
+  "add_node": "Add Node",
+  "add_link": "Add Link",
+  "manage_links": "Manage Links",
+  "select_source_node": "Select Source Node",
+  "select_target_node": "Select Target Node",
+  "enter_link_value": "Enter link value",
+  "no_nodes_available": "No nodes available. Add a new node!"
 }
