@@ -1,5 +1,3 @@
-// src/redux/dataActions.js
-
 export const ADD_NODE = 'ADD_NODE';
 export const ADD_LINK = 'ADD_LINK';
 export const EDIT_NODE = 'EDIT_NODE';

@@ -1,5 +1,3 @@
-// src/components/Chart.jsx
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setData } from '../redux/dataActions';
@@ -20,13 +18,11 @@ const CustomTooltip = ({ active, payload }) => {
     return null;
 };
 
-// Custom node component to render node with title
 const NodeComponent = ({ x, y, width, height, payload, padding, nodes }) => {
     const { t } = useTranslation();
 
     if (x === undefined || y === undefined) return null;
 
-    // Find the original node value from the nodes prop using payload.id
     const originalNode = nodes.find((node) => node.id === payload.id);
     const displayValue = originalNode ? originalNode.value : payload.value;
 
@@ -66,7 +62,7 @@ const Chart = () => {
         const fetchData = async () => {
             try {
                 const fetchedData = await mockData.fetch();
-                console.log('Fetched Data:', fetchedData); // Check fetched data
+                console.log('Fetched Data:', fetchedData);
                 dispatch(setData(fetchedData));
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -91,7 +87,7 @@ const Chart = () => {
                         nodes: nodes.filter(Boolean),
                         links: links.filter(link => link.source !== undefined && link.target !== undefined)
                     }}
-                    node={<NodeComponent nodes={nodes} width={180} padding={40} />} // Pass nodes as a prop
+                    node={<NodeComponent nodes={nodes} width={180} padding={40} />}
                     margin={{ top: 40, left: 60, right: 60, bottom: 40 }}
                     link={{ stroke: '#77c', strokeWidth: 10 }}
                 >

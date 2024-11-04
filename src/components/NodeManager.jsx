@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNode, editNode, deleteNode, addLink } from '../redux/dataActions';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import './NodeManager.css ';
 
 const NodeManager = () => {
     const { t } = useTranslation();

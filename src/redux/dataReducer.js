@@ -1,5 +1,3 @@
-// src/redux/dataReducer.js
-
 import {
     ADD_NODE,
     ADD_LINK,

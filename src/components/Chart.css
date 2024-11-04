@@ -1,6 +1,3 @@
-/* src/styles/Chart.css */
-
-/* Container for the entire Sankey chart */
 .chart-container {
     position: relative;
     text-align: center;
@@ -25,7 +22,7 @@
     color: #333;
     text-align: center;
     white-space: nowrap;
-    transform: translateY(-40%); /* Adjusted to slightly lift above the node */
-    width: 100px; /* Adjust for readability */
-    pointer-events: none; /* To prevent blocking any clicks */
+    transform: translateY(-40%); 
+    width: 100px; 
+    pointer-events: none; 
 }
