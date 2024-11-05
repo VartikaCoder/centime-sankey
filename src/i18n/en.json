@@ -22,6 +22,7 @@
   "existing_nodes": "Existing Nodes",
   "enter_node_name": "Enter node name",
   "enter_node_value": "Enter node value",
+  "select_parent_node": "Select Parent Node (optional)",
   "select_node_to_edit": "Select Node to Edit",
   "enter_new_value": "Enter new value",
   "edit_node": "Edit Node",

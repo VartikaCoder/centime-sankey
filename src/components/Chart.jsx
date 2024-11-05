@@ -6,17 +6,7 @@ import { Sankey, Tooltip, Layer } from 'recharts';
 import { useTranslation } from 'react-i18next';
 import './Chart.css';
 
-const CustomTooltip = ({ active, payload }) => {
-    const { t } = useTranslation();
-    if (active && payload && payload.length) {
-        return (
-            <div style={{ backgroundColor: 'white', border: '1px solid #ccc', padding: '5px' }}>
-                <p>{t(payload[0].name, { defaultValue: t('Unknown') })}: {payload[0].value}</p>
-            </div>
-        );
-    }
-    return null;
-};
+import CustomTooltip from './CustomTooltip';
 
 const NodeComponent = ({ x, y, width, height, payload, padding, nodes }) => {
     const { t } = useTranslation();
@@ -84,8 +74,11 @@ const Chart = () => {
                     width={900}
                     height={700}
                     data={{
-                        nodes: nodes.filter(Boolean),
-                        links: links.filter(link => link.source !== undefined && link.target !== undefined)
+                        nodes: nodes.filter(node => node !== undefined && node !== null),
+                        links: links.filter(link =>
+                            link.source !== undefined && link.target !== undefined &&
+                            link.source < nodes.length && link.target < nodes.length // Ensure indices are valid
+                        )
                     }}
                     node={<NodeComponent nodes={nodes} width={180} padding={40} />}
                     margin={{ top: 40, left: 60, right: 60, bottom: 40 }}
@@ -93,6 +86,7 @@ const Chart = () => {
                 >
                     <Tooltip content={<CustomTooltip />} />
                 </Sankey>
+
 
             </div>
         </div>

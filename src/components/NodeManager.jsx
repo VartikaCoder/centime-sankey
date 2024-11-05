@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNode, editNode, deleteNode, addLink } from '../redux/dataActions';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import './NodeManager.css ';
+import './NodeManager.css';
 
 const NodeManager = () => {
     const { t } = useTranslation();
@@ -14,6 +14,7 @@ const NodeManager = () => {
     const [sourceId, setSourceId] = useState('');
     const [targetId, setTargetId] = useState('');
     const [linkValue, setLinkValue] = useState('');
+    const [parentNodeId, setParentNodeId] = useState('');
 
     const nodes = useSelector((state) => state.data.nodes);
     const links = useSelector((state) => state.data.links);
@@ -23,10 +24,28 @@ const NodeManager = () => {
         if (nodeName && nodeValue) {
             const newId = Date.now();
             dispatch(addNode({ id: newId, name: nodeName, value: Number(nodeValue) }));
+
+            // Find the index of the parent node
+            if (parentNodeId) {
+                const parentIndex = nodes.findIndex(node => node.id === Number(parentNodeId));
+                const newNodeIndex = nodes.length; // The new node will be added at the end
+
+                // Only add link if parent exists
+                if (parentIndex !== -1) {
+                    dispatch(addLink({
+                        source: parentIndex,
+                        target: newNodeIndex,
+                        value: Number(nodeValue)
+                    }));
+                }
+            }
+
             setNodeName('');
             setNodeValue('');
+            setParentNodeId('');
         }
     };
+
 
     const handleEditNode = () => {
         if (selectedNodeId && newValue) {
@@ -71,6 +90,7 @@ const NodeManager = () => {
                                     <FaTrashAlt
                                         onClick={() => dispatch(deleteNode(node.id))}
                                         title={t('delete_node')}
+                                        className="delete-icon"
                                         style={{ cursor: 'pointer', marginLeft: '10px' }}
                                     />
                                 )}
@@ -95,8 +115,20 @@ const NodeManager = () => {
                     onChange={(e) => setNodeValue(e.target.value)}
                     placeholder={t('enter_node_value')}
                 />
+
+                {/* Parent Node Selection */}
+                <select value={parentNodeId} onChange={(e) => setParentNodeId(e.target.value)}>
+                    <option value="">{t('select_parent_node', { defaultValue: 'Select Parent Node (optional)' })}</option>
+                    {nodes.map((node) => (
+                        <option key={node.id} value={node.id}>
+                            {node.name}
+                        </option>
+                    ))}
+                </select>
+
                 <button onClick={handleAddNode}>{t('add_node')}</button>
             </div>
+
 
             <div className="dropdown-section">
                 <select

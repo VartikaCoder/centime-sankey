@@ -27,6 +27,7 @@
   "edit_node": "नोड संपादित करें",
   "add_node": "नोड जोड़ें",
   "add_link": "लिंक जोड़ें",
+  "select_parent_node": "मूल नोड चुनें (वैकल्पिक)",
   "manage_links": "लिंक प्रबंधित करें",
   "select_source_node": "स्रोत नोड चुनें",
   "select_target_node": "लक्ष्य नोड चुनें",
