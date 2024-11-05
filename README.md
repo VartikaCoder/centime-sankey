@@ -51,6 +51,21 @@ This project is a financial data visualization tool built with React. It uses a 
 ### Delete Node with Icon
 <img width="376" alt="Screenshot 2024-11-04 at 5 44 04 PM" src="https://github.com/user-attachments/assets/1476d7ea-91f7-4f94-bc98-e938023f0c0a">
 
+### Adding Nodes with Optional Parent Nodes
+<img width="1424" alt="Screenshot 2024-11-05 at 2 10 36 PM" src="https://github.com/user-attachments/assets/f81459c3-7056-4dd6-8ef3-4e4cf87d1438">
+
+The NodeManager component allows users to add new nodes to the Sankey diagram, with the option to link them to an existing "parent" node.
+Node Name and Value: Enter a name and value for the new node.
+Optional Parent Node:
+Select an existing node as the parent, if desired.
+When a parent is selected, a link is automatically created from the parent node to the new node, using the new node’s value for the flow.
+Real-Time Updates: The Sankey diagram updates immediately, displaying the new node and any connection to the selected parent.
+## Example
+To add "Grocery" as an expenditure under "Salary":
+Enter "Grocery" as the name, specify a value, and select "Salary" as the parent.
+The diagram will show a flow from "Salary" to "Grocery."
+This streamlined feature supports intuitive node and flow creation within the Sankey diagram, enabling users to visualize hierarchical relationships easily.
+
 ### Tests Coverage
 <img width="1154" alt="Screenshot 2024-10-29 at 5 02 33 PM" src="https://github.com/user-attachments/assets/d3fc315d-b74a-465a-820e-1fde6d86ed21">
 
